@@ -1,19 +1,29 @@
 import React from 'react';
 
-export default React.createClass({
-  getInitialState: function() {
-    return { secondsElapsed: 0 };
-  },
-  tick: function() {
-    this.setState({secondsElapsed: this.state.secondsElapsed + 1});
-  },
-  componentDidMount: function() {
+export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      secondsElapsed: 0
+    };
+  }
+
+  tick() {
+    this.setState({
+      secondsElapsed: this.state.secondsElapsed + 1
+    });
+  }
+
+  componentDidMount() {
     this.interval = setInterval(this.tick, 1000);
-  },
-  componentWillUnmount: function() {
+  }
+
+  componentWillUnmount() {
     clearInterval(this.interval);
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <div>
         <h1>React Playground</h1>
@@ -23,4 +33,5 @@ export default React.createClass({
       </div>
     );
   }
-});
+
+}
