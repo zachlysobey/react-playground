@@ -2,20 +2,21 @@ import React from 'react';
 import SecondCounter from './second-counter.jsx';
 import FirebaseTest from './firebase-test.jsx';
 
-export default function App() {
-  const intervals = [1, 3, 5];
-  const counters = intervals.map(interval => (
-    <p key={interval}>
-      {interval} Second Counter:
-      {' '}
-      <SecondCounter secondInterval={interval} />
-    </p>
-  ));
-  return (
-    <div>
-      <h1>React Playground</h1>
-      {counters}
-      <FirebaseTest />
-    </div>
-  );
-};
+export default () =>
+  <div>
+    <h1>React Playground</h1>
+    <Counters intervals={[1, 3, 5]} />
+    <FirebaseTest />
+  </div>
+
+const Counters = ({intervals}) =>
+  <div>
+    {
+      intervals.map(interval =>
+        <p key={interval}>
+          {interval} Second Counter: {' '}
+          <SecondCounter secondInterval={interval} />
+        </p>
+      )
+    }
+  </div>
