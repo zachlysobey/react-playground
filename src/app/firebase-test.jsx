@@ -2,13 +2,16 @@ import React from 'react';
 import Firebase from 'firebase';
 import * as log from './utils/logger.js';
 
-export default React.createClass({
-  getInitialState: function() {
-    return {
+export default class extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
       readingMaterial: []
-    }
-  },
-  componentWillMount: function() {
+    };
+  }
+
+  componentWillMount() {
     const readingMaterialAccess = new Firebase('https://vivid-torch-4564.firebaseio.com/readingMaterial');
     readingMaterialAccess.on('value', (readingMaterialSnapshot) => {
       let items = readingMaterialSnapshot.val();
@@ -16,8 +19,9 @@ export default React.createClass({
         readingMaterial: items
       });
     }, log.error);
-  },
-  render: function() {
+  }
+
+  render() {
     let key = 0;
     const readingItems = this.state.readingMaterial.map(item => {
       return <p key={key++}>item: {item}</p>;
@@ -29,4 +33,5 @@ export default React.createClass({
       </div>
     );
   }
-});
+
+};

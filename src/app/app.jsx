@@ -2,8 +2,9 @@ import React from 'react';
 import SecondCounter from './second-counter.jsx';
 import FirebaseTest from './firebase-test.jsx';
 
-export default React.createClass({
-  render: function() {
+export default class extends React.Component {
+
+  render() {
     const intervals = [1, 3, 5];
     const counters = intervals.map(interval => (
       <p key={interval}>
@@ -20,4 +21,5 @@ export default React.createClass({
       </div>
     );
   }
-});
+
+};
